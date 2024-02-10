@@ -116,8 +116,20 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNumerals = [
+    ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+    ['', 'X', 'XX', 'XXX'],
+  ];
+  const tens = Math.floor(num / 10);
+  const ones = num % 10;
+  let result = '';
+  if (num < 10) {
+    result = romanNumerals[0][ones];
+  } else {
+    result = romanNumerals[1][tens] + romanNumerals[0][ones];
+  }
+  return result;
 }
 
 /**
@@ -200,8 +212,15 @@ function getIndexOf(str, letter) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const str = `${num}`;
+  const dig = `${digit}`;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === dig) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -300,8 +319,23 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let result = str;
+  let even = '';
+  let odd = '';
+  for (let i = 0; i < iterations; i += 1) {
+    even = '';
+    odd = '';
+    for (let a = 0; a < result.length; a += 1) {
+      if (a % 2 === 0) {
+        even += result[a];
+      } else {
+        odd += result[a];
+      }
+    }
+    result = even + odd;
+  }
+  return result;
 }
 
 /**
